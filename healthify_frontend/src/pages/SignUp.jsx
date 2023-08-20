@@ -48,7 +48,7 @@ export default function signup() {
         name: data.get('name'),
         age: parseInt(age),
       };
-      axios.post('http://localhost:8082/user/add', user)
+      axios.post(`${import.meta.env.VITE_HOST}/user/add`, user)
         .then((_) => {
           setMessage('Registration Successful');
           setSeverity('success');

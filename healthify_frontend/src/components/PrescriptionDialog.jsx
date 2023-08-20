@@ -21,7 +21,7 @@ export default function PrescriptionDialog({ open, setOpen, appointmentId }) {
 
     React.useEffect(() => {
         if (appointmentId === '') return;
-        const requestUrl = 'http://localhost:8082/prescription/appointment/' + appointmentId;
+        const requestUrl = `${import.meta.env.VITE_HOST}/prescription/appointment/` + appointmentId;
         axios.get(requestUrl)
             .then((response) => {
                 setPrescription(response.data);

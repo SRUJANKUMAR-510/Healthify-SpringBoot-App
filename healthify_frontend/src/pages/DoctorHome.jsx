@@ -25,7 +25,7 @@ export default function DoctorHome() {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        const requestUrl = 'http://localhost:8082/appointment/doctor/' + getUserId();
+        const requestUrl = `${import.meta.env.VITE_HOST}/appointment/doctor/` + getUserId();
         axios.get(requestUrl)
             .then((response) => {
                 setAppointments(response.data);
@@ -36,7 +36,7 @@ export default function DoctorHome() {
     }, []);
 
     const handleClick = (appointmentId) => {
-        axios.delete(`http://localhost:8082/appointment/delete/${appointmentId}`)
+        axios.delete(`${import.meta.env.VITE_HOST}/appointment/delete/${appointmentId}`)
             .then((_) => {
                 const newAppointments = appointments.filter((appointment) => {
                     return appointment.appointmentId !== appointmentId;
