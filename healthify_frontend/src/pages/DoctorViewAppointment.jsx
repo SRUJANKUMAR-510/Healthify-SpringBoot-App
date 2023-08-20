@@ -45,12 +45,12 @@ export default function DoctorViewAppointment() {
     }, [id]);
 
     const fetchData = () => {
-        axios.get(`http://localhost:8082/appointment/${id}`)
+        axios.get(`${import.meta.env.VITE_HOST}/appointment/${id}`)
             .then((response) => {
                 if(response.data.status !== 'pending'){
                     setOpenMedicine(false);
                 }
-                axios.get(`http://localhost:8082/appointment/user/${response.data.userId}`)
+                axios.get(`${import.meta.env.VITE_HOST}/appointment/user/${response.data.userId}`)
                     .then((response) => {
                         setAppointments(response.data);
                     })
@@ -64,7 +64,7 @@ export default function DoctorViewAppointment() {
     }
 
     React.useEffect(() => {
-        axios.get(`http://localhost:8082/medicine/all`)
+        axios.get(`${import.meta.env.VITE_HOST}/medicine/all`)
             .then((response) => {
                 setMedicines(response.data);
             })
@@ -95,7 +95,7 @@ export default function DoctorViewAppointment() {
         }
 
 
-        axios.post(`http://localhost:8082/prescription/add`, prescription)
+        axios.post(`${import.meta.env.VITE_HOST}/prescription/add`, prescription)
             .then((_) => {
                 setMessage('Prescription added successfully');
                 setSeverity('success');

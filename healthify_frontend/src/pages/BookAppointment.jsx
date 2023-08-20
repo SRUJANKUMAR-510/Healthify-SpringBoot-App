@@ -21,7 +21,7 @@ export default function BookAppointment() {
     const [severity, setSeverity] = React.useState('success');
 
     React.useEffect(() => {
-        axios.get('http://localhost:8082/hospital/all')
+        axios.get(`${import.meta.env.VITE_HOST}/hospital/all`)
             .then((response) => {
                 setHospitals(response.data);
             })
@@ -33,7 +33,7 @@ export default function BookAppointment() {
     React.useEffect(() => {
         setSelectedDoctor('');
         if (selectedHospital !== '') {
-            axios.get(`http://localhost:8082/doctor/hospital/${selectedHospital}`)
+            axios.get(`${import.meta.env.VITE_HOST}/doctor/hospital/${selectedHospital}`)
                 .then((response) => {
                     setDoctors(response.data);
                 })
@@ -55,7 +55,7 @@ export default function BookAppointment() {
             setOpen(true);
             return;
         }
-        axios.post('http://localhost:8082/appointment/add', {
+        axios.post(`${import.meta.env.VITE_HOST}/appointment/add`, {
             doctorId: selectedDoctor,
             userId: getUserId()
         }).then((_) => {
