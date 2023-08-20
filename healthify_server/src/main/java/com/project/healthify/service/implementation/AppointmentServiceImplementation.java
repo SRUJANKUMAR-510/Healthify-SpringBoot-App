@@ -40,9 +40,9 @@ public class AppointmentServiceImplementation implements AppointmentService {
                 break;
             }
         }
-        if(appointments.size() >= 2 || flag == 1) return null;
+        if(appointments.size() >= 10) return null;
         Appointment appointment = repository.save(entity);
-        sendMail(appointment,appointments.size()+1);
+//        sendMail(appointment,appointments.size()+1);
         return appointment;
     }
 
